@@ -13,10 +13,9 @@ let pow v n =
 
 let rec convert : Number -> int = fun n ->
     [
-        for i = 0 to (n |> List.length) - 1 do
+        for i = (n |> List.length) - 1 downto 0 do
             yield n[i] |> List.length
     ]
-    |> List.rev
     |> List.mapi (fun i v -> if i = 0 then v else v * (pow 10 i))
     |> List.sum
 
