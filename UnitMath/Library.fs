@@ -4,12 +4,6 @@ open NUnit.Framework
 
 type Number = list<unit list>
 
-let printJson<'a> = System.Text.Json.JsonSerializer.Serialize >> System.Console.WriteLine
-
-let inline mid<'a> (act: 'a -> unit) v =
-    act v
-    v
-
 let pow v n =
     let rec pow v n acc =
         match n with
@@ -23,9 +17,7 @@ let rec convert : Number -> int = fun n ->
             yield n[i] |> List.length
     ]
     |> List.rev
-    |> mid printJson
     |> List.mapi (fun i v -> if i = 0 then v else v * (pow 10 i))
-    |> mid printJson
     |> List.sum
 
 type ``Unit math tests`` () =
